@@ -2,14 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>SCOA & Unicorn Engineering | Industrial Power Solutions</title>
-  <meta name="description" content="Industrial electrical, electronics, solar installation, inverter systems, automation panels, VFD setup, and automatic changeover solutions across Nigeria, Ghana and Kenya.">
+  <meta name="description" content="Industrial electrical, electronics, solar installation, inverter systems, automation panels, VFD setup, automatic changeover, CCTV, fire alarms, and LPG gas depot solutions across Nigeria, Ghana and Kenya.">
+  <meta name="theme-color" content="#1d4ed8">
   
-  <!-- Preconnect for performance -->
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="SCOA & Unicorn Engineering">
+  <meta property="og:description" content="Industrial power solutions across Africa – solar, automation, electrical, CCTV, fire alarms, LPG gas depot">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://scoa-unicorn.engineering">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=80">
+  
+  <!-- Preconnect & Preload -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Preload hero images for better LCP -->
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80" fetchpriority="high">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=600&q=80" fetchpriority="high">
   
   <style>
     /* CSS Reset & Base */
@@ -20,7 +32,7 @@
     }
 
     :root {
-      /* Modern color system */
+      /* Color system */
       --primary-50: #eff6ff;
       --primary-100: #dbeafe;
       --primary-500: #3b82f6;
@@ -84,6 +96,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 80px;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -96,31 +109,49 @@
       overflow-x: hidden;
     }
 
-    /* Selection styling */
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--primary-600);
+      color: white;
+      padding: var(--space-3) var(--space-6);
+      text-decoration: none;
+      border-radius: 0 0 var(--radius) 0;
+      z-index: 200;
+      transition: top 0.2s;
+    }
+    .skip-link:focus {
+      top: 0;
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--primary-500);
+      outline-offset: 2px;
+    }
+
     ::selection {
       background: var(--primary-500);
       color: white;
     }
 
-    /* Typography */
-    h1, h2, h3, h4 {
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.025em;
+    @supports not (backdrop-filter: blur(20px)) {
+      .header, .gallery-btn, .mobile-menu {
+        background: var(--gray-900) !important;
+      }
     }
 
-    /* Container */
     .container {
       width: 100%;
       max-width: 1280px;
       margin-inline: auto;
       padding-inline: var(--space-6);
     }
-
     @media (min-width: 640px) {
-      .container {
-        padding-inline: var(--space-8);
-      }
+      .container { padding-inline: var(--space-8); }
     }
 
     /* Header */
@@ -135,14 +166,12 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
-
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 72px;
     }
-
     .logo {
       display: flex;
       align-items: center;
@@ -152,7 +181,6 @@
       font-weight: 700;
       font-size: 1.125rem;
     }
-
     .logo-mark {
       width: 40px;
       height: 40px;
@@ -163,11 +191,9 @@
       font-size: 1.25rem;
       box-shadow: var(--shadow), 0 0 20px -5px var(--primary-500);
     }
-
     .nav {
       display: none;
     }
-
     @media (min-width: 768px) {
       .nav {
         display: flex;
@@ -175,7 +201,6 @@
         gap: var(--space-1);
       }
     }
-
     .nav-link {
       padding: var(--space-2) var(--space-4);
       color: var(--gray-400);
@@ -185,23 +210,18 @@
       border-radius: var(--radius);
       transition: all var(--transition-fast);
     }
-
     .nav-link:hover, .nav-link[aria-current="true"] {
       color: var(--gray-100);
       background: rgb(255 255 255 / 0.05);
     }
-
     .header-cta {
       display: none;
     }
-
     @media (min-width: 768px) {
       .header-cta {
         display: inline-flex;
       }
     }
-
-    /* Mobile menu button */
     .menu-btn {
       display: flex;
       align-items: center;
@@ -214,11 +234,8 @@
       color: var(--gray-400);
       cursor: pointer;
     }
-
     @media (min-width: 768px) {
-      .menu-btn {
-        display: none;
-      }
+      .menu-btn { display: none; }
     }
 
     /* Buttons */
@@ -236,34 +253,28 @@
       cursor: pointer;
       transition: all var(--transition-fast);
     }
-
     .btn-primary {
       background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
       color: white;
       box-shadow: var(--shadow), 0 0 20px -5px var(--primary-500);
     }
-
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-md), 0 0 30px -5px var(--primary-500);
     }
-
     .btn-secondary {
       background: var(--accent-500);
       color: var(--gray-900);
     }
-
     .btn-secondary:hover {
       background: var(--accent-400);
       transform: translateY(-2px);
     }
-
     .btn-ghost {
       background: rgb(255 255 255 / 0.05);
       color: var(--gray-300);
       border: 1px solid rgb(255 255 255 / 0.1);
     }
-
     .btn-ghost:hover {
       background: rgb(255 255 255 / 0.1);
       color: var(--gray-100);
@@ -278,7 +289,6 @@
       padding-top: 72px;
       overflow: hidden;
     }
-
     .hero::before {
       content: '';
       position: absolute;
@@ -288,25 +298,15 @@
         radial-gradient(ellipse 60% 40% at 80% 80%, rgb(251 191 36 / 0.08), transparent);
       pointer-events: none;
     }
-
     .hero-grid {
       display: grid;
       gap: var(--space-12);
       align-items: center;
     }
-
     @media (min-width: 1024px) {
-      .hero-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-16);
-      }
+      .hero-grid { grid-template-columns: 1fr 1fr; gap: var(--space-16); }
     }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-
+    .hero-content { position: relative; z-index: 1; }
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -320,7 +320,6 @@
       font-weight: 500;
       margin-bottom: var(--space-6);
     }
-
     .hero-badge::before {
       content: '';
       width: 8px;
@@ -329,40 +328,34 @@
       border-radius: var(--radius-full);
       animation: pulse 2s infinite;
     }
-
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.5; }
     }
-
     .hero-title {
       font-size: clamp(2.5rem, 6vw, 4.5rem);
       font-weight: 800;
       line-height: 1.1;
       margin-bottom: var(--space-6);
     }
-
     .hero-title span {
       background: linear-gradient(135deg, var(--primary-400), var(--accent-400));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
     .hero-description {
       font-size: 1.125rem;
       color: var(--gray-400);
       max-width: 540px;
       margin-bottom: var(--space-8);
     }
-
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-4);
       margin-bottom: var(--space-10);
     }
-
     .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -370,72 +363,40 @@
       padding-top: var(--space-8);
       border-top: 1px solid rgb(255 255 255 / 0.1);
     }
+    .stat-value { font-size: 1.875rem; font-weight: 800; color: var(--gray-100); }
+    .stat-label { font-size: 0.875rem; color: var(--gray-500); }
 
-    .stat-value {
-      font-size: 1.875rem;
-      font-weight: 800;
-      color: var(--gray-100);
-    }
-
-    .stat-label {
-      font-size: 0.875rem;
-      color: var(--gray-500);
-    }
-
-    /* Hero visual */
-    .hero-visual {
-      position: relative;
-      display: none;
-    }
-
-    @media (min-width: 1024px) {
-      .hero-visual {
-        display: block;
-      }
-    }
-
+    .hero-visual { position: relative; display: none; }
+    @media (min-width: 1024px) { .hero-visual { display: block; } }
     .hero-image-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: var(--space-4);
       transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
     }
-
     .hero-image {
       aspect-ratio: 4/3;
       border-radius: var(--radius-xl);
       overflow: hidden;
       border: 1px solid rgb(255 255 255 / 0.1);
     }
-
     .hero-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform var(--transition-slow);
     }
-
-    .hero-image:hover img {
-      transform: scale(1.05);
-    }
-
-    .hero-image:first-child {
-      transform: translateY(var(--space-8));
-    }
+    .hero-image:hover img { transform: scale(1.05); }
+    .hero-image:first-child { transform: translateY(var(--space-8)); }
 
     /* Section styles */
-    .section {
-      padding-block: var(--space-24);
-      position: relative;
-    }
-
+    .section { padding-block: var(--space-24); position: relative; }
     .section-header {
       text-align: center;
       max-width: 640px;
       margin-inline: auto;
       margin-bottom: var(--space-16);
     }
-
     .section-label {
       display: inline-block;
       padding: var(--space-2) var(--space-4);
@@ -448,35 +409,16 @@
       letter-spacing: 0.05em;
       margin-bottom: var(--space-4);
     }
+    .section-title { font-size: clamp(1.875rem, 4vw, 2.5rem); margin-bottom: var(--space-4); }
+    .section-description { color: var(--gray-400); font-size: 1.125rem; }
 
-    .section-title {
-      font-size: clamp(1.875rem, 4vw, 2.5rem);
-      margin-bottom: var(--space-4);
-    }
-
-    .section-description {
-      color: var(--gray-400);
-      font-size: 1.125rem;
-    }
-
-    /* Services */
+    /* Services grid */
     .services-grid {
       display: grid;
       gap: var(--space-6);
     }
-
-    @media (min-width: 640px) {
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .services-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
+    @media (min-width: 640px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(4, 1fr); } }
     .service-card {
       position: relative;
       padding: var(--space-8);
@@ -485,7 +427,6 @@
       border-radius: var(--radius-xl);
       transition: all var(--transition);
     }
-
     .service-card::before {
       content: '';
       position: absolute;
@@ -500,17 +441,12 @@
       opacity: 0;
       transition: opacity var(--transition);
     }
-
     .service-card:hover {
       transform: translateY(-4px);
       border-color: rgb(59 130 246 / 0.3);
       box-shadow: var(--shadow-xl);
     }
-
-    .service-card:hover::before {
-      opacity: 1;
-    }
-
+    .service-card:hover::before { opacity: 1; }
     .service-icon {
       width: 56px;
       height: 56px;
@@ -522,62 +458,56 @@
       margin-bottom: var(--space-6);
       box-shadow: 0 0 20px -5px var(--primary-500);
     }
-
     .service-card:nth-child(2) .service-icon {
       background: linear-gradient(135deg, var(--accent-500), var(--accent-600));
       box-shadow: 0 0 20px -5px var(--accent-500);
     }
-
     .service-card:nth-child(3) .service-icon {
       background: linear-gradient(135deg, var(--success), #059669);
       box-shadow: 0 0 20px -5px var(--success);
     }
-
     .service-card:nth-child(4) .service-icon {
       background: linear-gradient(135deg, #8b5cf6, #7c3aed);
       box-shadow: 0 0 20px -5px #8b5cf6;
     }
-
-    .service-title {
-      font-size: 1.125rem;
-      margin-bottom: var(--space-3);
+    /* Additional service cards get their own gradient colors */
+    .service-card:nth-child(9) .service-icon {
+      background: linear-gradient(135deg, #ef4444, #dc2626); /* red for CCTV */
+      box-shadow: 0 0 20px -5px #ef4444;
     }
-
-    .service-description {
-      color: var(--gray-500);
-      font-size: 0.875rem;
-      line-height: 1.6;
+    .service-card:nth-child(10) .service-icon {
+      background: linear-gradient(135deg, #f97316, #ea580c); /* orange for fire alarm */
+      box-shadow: 0 0 20px -5px #f97316;
     }
+    .service-card:nth-child(11) .service-icon {
+      background: linear-gradient(135deg, #14b8a6, #0d9488); /* teal for LPG */
+      box-shadow: 0 0 20px -5px #14b8a6;
+    }
+    .service-title { font-size: 1.125rem; margin-bottom: var(--space-3); }
+    .service-description { color: var(--gray-500); font-size: 0.875rem; line-height: 1.6; }
 
     /* Gallery */
-    .gallery-section {
-      background: linear-gradient(180deg, transparent, rgb(17 24 39 / 0.5), transparent);
-    }
-
+    .gallery-section { background: linear-gradient(180deg, transparent, rgb(17 24 39 / 0.5), transparent); }
     .gallery-carousel {
       position: relative;
       border-radius: var(--radius-2xl);
       overflow: hidden;
       border: 1px solid rgb(255 255 255 / 0.05);
     }
-
     .gallery-track {
       display: flex;
       transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
     .gallery-slide {
       min-width: 100%;
       aspect-ratio: 16/9;
       position: relative;
     }
-
     .gallery-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-
     .gallery-caption {
       position: absolute;
       bottom: 0;
@@ -587,7 +517,6 @@
       background: linear-gradient(transparent, rgb(0 0 0 / 0.8));
       color: white;
     }
-
     .gallery-controls {
       position: absolute;
       inset: 0;
@@ -597,7 +526,6 @@
       padding: var(--space-6);
       pointer-events: none;
     }
-
     .gallery-btn {
       width: 48px;
       height: 48px;
@@ -613,19 +541,16 @@
       pointer-events: auto;
       transition: all var(--transition-fast);
     }
-
     .gallery-btn:hover {
       background: var(--primary-600);
       border-color: var(--primary-500);
     }
-
     .gallery-dots {
       display: flex;
       justify-content: center;
       gap: var(--space-3);
       margin-top: var(--space-6);
     }
-
     .gallery-dot {
       width: 12px;
       height: 12px;
@@ -635,7 +560,6 @@
       cursor: pointer;
       transition: all var(--transition-fast);
     }
-
     .gallery-dot.active {
       background: var(--accent-500);
       width: 32px;
@@ -646,19 +570,8 @@
       display: grid;
       gap: var(--space-6);
     }
-
-    @media (min-width: 768px) {
-      .contact-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .contact-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
+    @media (min-width: 768px) { .contact-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .contact-grid { grid-template-columns: repeat(4, 1fr); } }
     .contact-card {
       padding: var(--space-8);
       background: rgb(31 41 55 / 0.3);
@@ -666,12 +579,10 @@
       border-radius: var(--radius-xl);
       transition: all var(--transition);
     }
-
     .contact-card:hover {
       background: rgb(31 41 55 / 0.5);
       border-color: rgb(59 130 246 / 0.2);
     }
-
     .contact-icon {
       width: 48px;
       height: 48px;
@@ -683,28 +594,18 @@
       font-size: 1.25rem;
       margin-bottom: var(--space-5);
     }
-
-    .contact-title {
-      font-size: 1rem;
-      margin-bottom: var(--space-3);
-    }
-
+    .contact-title { font-size: 1rem; margin-bottom: var(--space-3); }
     .contact-info {
       color: var(--gray-400);
       font-size: 0.875rem;
       line-height: 1.7;
     }
-
     .contact-info a {
       color: var(--gray-300);
       text-decoration: none;
       transition: color var(--transition-fast);
     }
-
-    .contact-info a:hover {
-      color: var(--primary-400);
-    }
-
+    .contact-info a:hover { color: var(--primary-400); }
     .contact-cta {
       display: inline-flex;
       align-items: center;
@@ -715,17 +616,13 @@
       font-weight: 600;
       text-decoration: none;
     }
-
-    .contact-cta:hover {
-      color: var(--accent-500);
-    }
+    .contact-cta:hover { color: var(--accent-500); }
 
     /* Footer */
     .footer {
       padding-block: var(--space-12);
       border-top: 1px solid rgb(255 255 255 / 0.05);
     }
-
     .footer-grid {
       display: flex;
       flex-direction: column;
@@ -733,7 +630,6 @@
       gap: var(--space-6);
       text-align: center;
     }
-
     @media (min-width: 768px) {
       .footer-grid {
         flex-direction: row;
@@ -741,7 +637,6 @@
         text-align: left;
       }
     }
-
     .footer-brand {
       display: flex;
       align-items: center;
@@ -749,11 +644,7 @@
       color: var(--gray-300);
       font-weight: 600;
     }
-
-    .footer-copy {
-      color: var(--gray-600);
-      font-size: 0.875rem;
-    }
+    .footer-copy { color: var(--gray-600); font-size: 0.875rem; }
 
     /* Mobile menu */
     .mobile-menu {
@@ -767,18 +658,19 @@
       gap: var(--space-6);
       transform: translateX(100%);
       transition: transform var(--transition);
+      overflow-y: auto;
     }
-
     .mobile-menu.open {
       transform: translateX(0);
     }
-
+    body.menu-open {
+      overflow: hidden;
+    }
     .mobile-menu-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
     .mobile-menu-close {
       width: 40px;
       height: 40px;
@@ -791,13 +683,11 @@
       font-size: 1.5rem;
       cursor: pointer;
     }
-
     .mobile-nav {
       display: flex;
       flex-direction: column;
       gap: var(--space-2);
     }
-
     .mobile-nav a {
       padding: var(--space-4);
       color: var(--gray-300);
@@ -807,10 +697,39 @@
       border-radius: var(--radius-lg);
       transition: all var(--transition-fast);
     }
-
     .mobile-nav a:hover {
       background: rgb(255 255 255 / 0.05);
       color: var(--gray-100);
+    }
+
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      bottom: var(--space-6);
+      right: var(--space-6);
+      width: 48px;
+      height: 48px;
+      background: var(--primary-600);
+      color: white;
+      border: none;
+      border-radius: var(--radius-full);
+      display: grid;
+      place-items: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition);
+      box-shadow: var(--shadow-lg);
+      z-index: 90;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover {
+      background: var(--primary-700);
+      transform: translateY(-4px);
     }
 
     /* Animations */
@@ -819,36 +738,34 @@
       transform: translateY(30px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
-
     .stagger-1 { transition-delay: 0.1s; }
     .stagger-2 { transition-delay: 0.2s; }
     .stagger-3 { transition-delay: 0.3s; }
     .stagger-4 { transition-delay: 0.4s; }
 
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
       }
-      html {
-        scroll-behavior: auto;
-      }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Skip link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <!-- Header -->
   <header class="header">
     <div class="container header-inner">
-      <a href="#home" class="logo">
-        <span class="logo-mark">⚡</span>
+      <a href="#home" class="logo" aria-label="SCOA & Unicorn Engineering home">
+        <span class="logo-mark" aria-hidden="true">⚡</span>
         <span>SCOA & Unicorn</span>
       </a>
       
@@ -864,8 +781,8 @@
         Get Quote
       </a>
       
-      <button class="menu-btn" aria-label="Open menu" onclick="toggleMenu()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <button class="menu-btn" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <line x1="3" y1="6" x2="21" y2="6"/>
           <line x1="3" y1="12" x2="21" y2="12"/>
           <line x1="3" y1="18" x2="21" y2="18"/>
@@ -875,270 +792,338 @@
   </header>
 
   <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation" aria-hidden="true">
     <div class="mobile-menu-header">
       <span class="logo">
-        <span class="logo-mark">⚡</span>
+        <span class="logo-mark" aria-hidden="true">⚡</span>
         <span>SCOA & Unicorn</span>
       </span>
-      <button class="mobile-menu-close" onclick="toggleMenu()" aria-label="Close menu">×</button>
+      <button class="mobile-menu-close" id="closeMenu" aria-label="Close menu">×</button>
     </div>
     <nav class="mobile-nav">
-      <a href="#home" onclick="toggleMenu()">Home</a>
-      <a href="#about" onclick="toggleMenu()">About</a>
-      <a href="#services" onclick="toggleMenu()">Services</a>
-      <a href="#gallery" onclick="toggleMenu()">Gallery</a>
-      <a href="#contact" onclick="toggleMenu()">Contact</a>
+      <a href="#home" id="mobileHome">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
     </nav>
     <a href="https://wa.me/2348029829218" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">
       Get Quote on WhatsApp
     </a>
   </div>
 
-  <!-- Hero -->
-  <section class="hero" id="home">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-content fade-in">
-          <div class="hero-badge">Available for projects</div>
-          <h1 class="hero-title">
-            Powering Industry with <span>Smart Solutions</span>
-          </h1>
-          <p class="hero-description">
-            Industrial electrical, automation, solar installation, and power systems across Nigeria, Ghana, and Kenya. Delivering safe, efficient, and professional engineering.
+  <!-- Main content -->
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content fade-in">
+            <div class="hero-badge">Available for projects</div>
+            <h1 class="hero-title">
+              Powering Industry with <span>Smart Solutions</span>
+            </h1>
+            <p class="hero-description">
+              Industrial electrical, automation, solar installation, power systems, CCTV, fire alarms, and LPG gas depot services across Nigeria, Ghana, and Kenya. Delivering safe, efficient, and professional engineering.
+            </p>
+            <div class="hero-actions">
+              <a href="https://wa.me/2348029829218" target="_blank" rel="noopener" class="btn btn-primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Chat on WhatsApp
+              </a>
+              <a href="#services" class="btn btn-ghost">Explore Services</a>
+            </div>
+            <div class="hero-stats">
+              <div>
+                <div class="stat-value" data-count="3">0</div>
+                <div class="stat-label">Countries</div>
+              </div>
+              <div>
+                <!-- Updated core services count to 11 -->
+                <div class="stat-value" data-count="11">0</div>
+                <div class="stat-label">Core Services</div>
+              </div>
+              <div>
+                <div class="stat-value" data-count="24">0</div>
+                <div class="stat-label">Hour Response</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hero-visual fade-in stagger-2">
+            <div class="hero-image-grid">
+              <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80" alt="Solar panel installation on rooftop" width="600" height="450" fetchpriority="high">
+              </div>
+              <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=600&q=80" alt="Industrial automation control panel" width="600" height="450" fetchpriority="high">
+              </div>
+              <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?auto=format&fit=crop&w=600&q=80" alt="Electrical distribution panel" width="600" height="450" loading="lazy">
+              </div>
+              <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" alt="VFD motor control system" width="600" height="450" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label">About Us</span>
+          <h2 class="section-title">Engineering Excellence Across Africa</h2>
+          <p class="section-description">
+            We are a results-driven engineering firm focused on industrial electrical systems, automation control panels, solar power, dependable power switching, CCTV, fire alarms, and LPG gas depot construction & maintenance.
           </p>
-          <div class="hero-actions">
-            <a href="https://wa.me/2348029829218" target="_blank" rel="noopener" class="btn btn-primary">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Chat on WhatsApp
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="services" style="padding-top: 0;">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label">What We Do</span>
+          <h2 class="section-title">Comprehensive Power & Safety Solutions</h2>
+        </div>
+        
+        <div class="services-grid">
+          <!-- Existing 8 services -->
+          <article class="service-card fade-in stagger-1">
+            <div class="service-icon" aria-hidden="true">⚡</div>
+            <h3 class="service-title">Industrial Electrical</h3>
+            <p class="service-description">Installation, maintenance and troubleshooting of industrial electrical systems and equipment.</p>
+          </article>
+          <article class="service-card fade-in stagger-2">
+            <div class="service-icon" aria-hidden="true">🔌</div>
+            <h3 class="service-title">Solar & Inverters</h3>
+            <p class="service-description">Solar farm setups, rooftop systems, inverters, and complete renewable energy solutions.</p>
+          </article>
+          <article class="service-card fade-in stagger-3">
+            <div class="service-icon" aria-hidden="true">🎛️</div>
+            <h3 class="service-title">Automation Panels</h3>
+            <p class="service-description">Custom automation panels designed for performance, safety and process control efficiency.</p>
+          </article>
+          <article class="service-card fade-in stagger-4">
+            <div class="service-icon" aria-hidden="true">⚙️</div>
+            <h3 class="service-title">VFD & Motor Control</h3>
+            <p class="service-description">VFD setup, motor control integration and system optimization for industrial applications.</p>
+          </article>
+          <article class="service-card fade-in stagger-1">
+            <div class="service-icon" aria-hidden="true">🔋</div>
+            <h3 class="service-title">Changeover Panels</h3>
+            <p class="service-description">Automatic changeover panel construction and installation for seamless power transition.</p>
+          </article>
+          <article class="service-card fade-in stagger-2">
+            <div class="service-icon" aria-hidden="true">🔧</div>
+            <h3 class="service-title">Industrial Electronics</h3>
+            <p class="service-description">Support for industrial electronics systems, control units and power-related devices.</p>
+          </article>
+          <article class="service-card fade-in stagger-3">
+            <div class="service-icon" aria-hidden="true">💾</div>
+            <h3 class="service-title">Power Backup</h3>
+            <p class="service-description">Battery systems and backup power solutions for continuous operations.</p>
+          </article>
+          <article class="service-card fade-in stagger-4">
+            <div class="service-icon" aria-hidden="true">📋</div>
+            <h3 class="service-title">Technical Consultation</h3>
+            <p class="service-description">Expert advice for power, control systems, automation and renewable projects.</p>
+          </article>
+
+          <!-- New services (9,10,11) -->
+          <article class="service-card fade-in stagger-1">
+            <div class="service-icon" aria-hidden="true">📹</div>
+            <h3 class="service-title">CCTV Installations & Monitoring</h3>
+            <p class="service-description">High-definition surveillance systems, remote monitoring, and security camera installations for industrial and commercial sites.</p>
+          </article>
+          <article class="service-card fade-in stagger-2">
+            <div class="service-icon" aria-hidden="true">🔥</div>
+            <h3 class="service-title">Fire Alarm Systems</h3>
+            <p class="service-description">Design, installation, and maintenance of fire detection and alarm systems to ensure safety compliance.</p>
+          </article>
+          <article class="service-card fade-in stagger-3">
+            <div class="service-icon" aria-hidden="true">⛽</div>
+            <h3 class="service-title">LPG Gas Depot Maintenance & Construction</h3>
+            <p class="service-description">Complete construction, piping, and routine maintenance for LPG storage and distribution depots.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery (Updated with 11 service-related images) -->
+    <section class="section gallery-section" id="gallery">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label">Our Work</span>
+          <h2 class="section-title">Project Gallery</h2>
+        </div>
+        
+        <div class="gallery-carousel fade-in">
+          <div class="gallery-track" id="galleryTrack">
+            <!-- 1. Industrial Electrical -->
+            <div class="gallery-slide">
+              <img src="https://images.unsplash.com/photo-1504321998924-5b6bdc4cf6c3?auto=format&fit=crop&w=1400&q=80" alt="Industrial electrical panel installation" width="1400" height="788" loading="lazy">
+              <div class="gallery-caption">
+                <h3>Industrial Electrical</h3>
+                <p>High‑power distribution and control panels</p>
+              </div>
+            </div>
+            <!-- 2. Solar & Inverters -->
+            <div class="gallery-slide">
+              <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1400&q=80" alt="Solar panel farm" width="1400" height="788" loading="lazy">
+              <div class="gallery-caption">
+                <h3>Solar & Inverters</h3>
+                <p>Large‑scale solar farm installations</p>
+              </div>
+            </div>
+            <!-- 3. Automation Panels -->
+            <div class="gallery-slide">
+              <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1400&q=80" alt="Automation control panel with PLC" width="1400" height="788" loading="lazy">
+              <div class="gallery-caption">
+                <h3>Automation Panels</h3>
+                <p>Custom PLC and automation solutions</p>
+              </div>
+            </div>
+            <!-- 4. VFD & Motor Control -->
+            <div class="gallery-slide">
+              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80" alt="VFD motor control system" width="1400" height="788" loading="lazy">
+              <div class="gallery-caption">
+                <h3>VFD & Motor Control</h3>
+                <p>Precision speed and torque control</p>
+              </div>
+            </div>
+            <!-- 5. Changeover Panels -->
+            <div class="gallery-slide">
+              <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?auto=format&fit=crop&w=1400&q=80" alt="Electrical transfer switch panel" width="1400" height="788" loading="lazy">
+              <div class="gallery-caption">
+                <h3>Changeover Panels</h3>
+                <p>Automatic power transfer systems</p>
+              </div>
+            </div>
+            <!-- 6. Industrial Electronics -->
+            <div class="gallery-slide">
+              <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1400&q=80" alt="Circuit board repair" width="1400" height="788" loading="lazy">
+              <div class="gallery-caption">
+                <h3>Industrial Electronics</h3>
+                <p>PCB repair and electronic control units</p>
+              </div>
+            </div>
+            <!-- 7. Power Backup -->
+            <div class="gallery-slide">
+              <img src="https://images.unsplash.com/photo-1565372915408-90ecf8571f57?auto=format&fit=crop&w=1400&q=80" alt="Battery backup system" width="1400" height="788" loading="lazy">
+              <div class="gallery-caption">
+                <h3>Power Backup</h3>
+                <p>UPS and battery storage solutions</p>
+              </div>
+            </div>
+            <!-- 8. Technical Consultation -->
+            <div class="gallery-slide">
+              <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?auto=format&fit=crop&w=1400&q=80" alt="Engineer consulting on site" width="1400" height="788" loading="lazy">
+              <div class="gallery-caption">
+                <h3>Technical Consultation</h3>
+                <p>Expert advice for industrial projects</p>
+              </div>
+            </div>
+            <!-- 9. CCTV Installations & Monitoring -->
+            <div class="gallery-slide">
+              <img src="https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?auto=format&fit=crop&w=1400&q=80" alt="Security camera installation" width="1400" height="788" loading="lazy">
+              <div class="gallery-caption">
+                <h3>CCTV Installations</h3>
+                <p>High‑definition surveillance systems</p>
+              </div>
+            </div>
+            <!-- 10. Fire Alarm Systems -->
+            <div class="gallery-slide">
+              <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1400&q=80" alt="Fire alarm control panel" width="1400" height="788" loading="lazy">
+              <div class="gallery-caption">
+                <h3>Fire Alarm Systems</h3>
+                <p>Detection and alarm panels</p>
+              </div>
+            </div>
+            <!-- 11. LPG Gas Depot Maintenance & Construction -->
+            <div class="gallery-slide">
+              <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1400&q=80" alt="LPG gas storage tanks" width="1400" height="788" loading="lazy">
+              <div class="gallery-caption">
+                <h3>LPG Gas Depot</h3>
+                <p>Storage and distribution facilities</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="gallery-controls">
+            <button class="gallery-btn" id="prevSlide" aria-label="Previous slide">‹</button>
+            <button class="gallery-btn" id="nextSlide" aria-label="Next slide">›</button>
+          </div>
+        </div>
+        
+        <div class="gallery-dots" id="galleryDots"></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="section-label">Get In Touch</span>
+          <h2 class="section-title">Ready to Power Your Project?</h2>
+          <p class="section-description">
+            All numbers are available on WhatsApp. Reach out for quotes, consultations, or emergency support.
+          </p>
+        </div>
+        
+        <div class="contact-grid">
+          <div class="contact-card fade-in stagger-1">
+            <div class="contact-icon" aria-hidden="true">📞</div>
+            <h3 class="contact-title">Main Line</h3>
+            <div class="contact-info">
+              <a href="tel:+2348029829218">+234 802 982 9218</a>
+            </div>
+            <a href="https://wa.me/2348029829218" target="_blank" rel="noopener" class="contact-cta">
+              WhatsApp →
             </a>
-            <a href="#services" class="btn btn-ghost">Explore Services</a>
           </div>
-          <div class="hero-stats">
-            <div>
-              <div class="stat-value" data-count="3">0</div>
-              <div class="stat-label">Countries</div>
-            </div>
-            <div>
-              <div class="stat-value" data-count="7">0</div>
-              <div class="stat-label">Core Services</div>
-            </div>
-            <div>
-              <div class="stat-value" data-count="24">0</div>
-              <div class="stat-label">Hour Response</div>
+          
+          <div class="contact-card fade-in stagger-2">
+            <div class="contact-icon" aria-hidden="true">📱</div>
+            <h3 class="contact-title">Additional Lines</h3>
+            <div class="contact-info">
+              +234 802 982 9219<br>
+              +234 813 239 6775<br>
+              +234 705 220 0670
             </div>
           </div>
-        </div>
-        
-        <div class="hero-visual fade-in stagger-2">
-          <div class="hero-image-grid">
-            <div class="hero-image">
-              <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80" alt="Solar installation" loading="lazy">
+          
+          <div class="contact-card fade-in stagger-3">
+            <div class="contact-icon" aria-hidden="true">✉️</div>
+            <h3 class="contact-title">Email</h3>
+            <div class="contact-info">
+              <a href="mailto:kollylove@gmail.com">kollylove@gmail.com</a>
             </div>
-            <div class="hero-image">
-              <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=600&q=80" alt="Industrial automation" loading="lazy">
-            </div>
-            <div class="hero-image">
-              <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?auto=format&fit=crop&w=600&q=80" alt="Electrical panel" loading="lazy">
-            </div>
-            <div class="hero-image">
-              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" alt="VFD systems" loading="lazy">
+          </div>
+          
+          <div class="contact-card fade-in stagger-4">
+            <div class="contact-icon" aria-hidden="true">🌍</div>
+            <h3 class="contact-title">Coverage</h3>
+            <div class="contact-info">
+              Nigeria • Ghana • Kenya<br>
+              Nationwide service available
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section class="section" id="about">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">About Us</span>
-        <h2 class="section-title">Engineering Excellence Across Africa</h2>
-        <p class="section-description">
-          We are a results-driven engineering firm focused on industrial electrical systems, automation control panels, solar power, and dependable power switching systems.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section class="section" id="services" style="padding-top: 0;">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">What We Do</span>
-        <h2 class="section-title">Comprehensive Power Solutions</h2>
-      </div>
-      
-      <div class="services-grid">
-        <article class="service-card fade-in stagger-1">
-          <div class="service-icon">⚡</div>
-          <h3 class="service-title">Industrial Electrical</h3>
-          <p class="service-description">Installation, maintenance and troubleshooting of industrial electrical systems and equipment.</p>
-        </article>
-        
-        <article class="service-card fade-in stagger-2">
-          <div class="service-icon">🔌</div>
-          <h3 class="service-title">Solar & Inverters</h3>
-          <p class="service-description">Solar farm setups, rooftop systems, inverters, and complete renewable energy solutions.</p>
-        </article>
-        
-        <article class="service-card fade-in stagger-3">
-          <div class="service-icon">🎛️</div>
-          <h3 class="service-title">Automation Panels</h3>
-          <p class="service-description">Custom automation panels designed for performance, safety and process control efficiency.</p>
-        </article>
-        
-        <article class="service-card fade-in stagger-4">
-          <div class="service-icon">⚙️</div>
-          <h3 class="service-title">VFD & Motor Control</h3>
-          <p class="service-description">VFD setup, motor control integration and system optimization for industrial applications.</p>
-        </article>
-        
-        <article class="service-card fade-in stagger-1">
-          <div class="service-icon">🔋</div>
-          <h3 class="service-title">Changeover Panels</h3>
-          <p class="service-description">Automatic changeover panel construction and installation for seamless power transition.</p>
-        </article>
-        
-        <article class="service-card fade-in stagger-2">
-          <div class="service-icon">🔧</div>
-          <h3 class="service-title">Industrial Electronics</h3>
-          <p class="service-description">Support for industrial electronics systems, control units and power-related devices.</p>
-        </article>
-        
-        <article class="service-card fade-in stagger-3">
-          <div class="service-icon">💾</div>
-          <h3 class="service-title">Power Backup</h3>
-          <p class="service-description">Battery systems and backup power solutions for continuous operations.</p>
-        </article>
-        
-        <article class="service-card fade-in stagger-4">
-          <div class="service-icon">📋</div>
-          <h3 class="service-title">Technical Consultation</h3>
-          <p class="service-description">Expert advice for power, control systems, automation and renewable projects.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section class="section gallery-section" id="gallery">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Our Work</span>
-        <h2 class="section-title">Project Gallery</h2>
-      </div>
-      
-      <div class="gallery-carousel fade-in">
-        <div class="gallery-track" id="galleryTrack">
-          <div class="gallery-slide">
-            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1400&q=80" alt="Solar panel farm">
-            <div class="gallery-caption">
-              <h3>Solar Farm Installation</h3>
-              <p>Large-scale renewable energy solutions</p>
-            </div>
-          </div>
-          <div class="gallery-slide">
-            <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?auto=format&fit=crop&w=1400&q=80" alt="Electrical panel">
-            <div class="gallery-caption">
-              <h3>Industrial Electrical Systems</h3>
-              <p>High-performance power distribution</p>
-            </div>
-          </div>
-          <div class="gallery-slide">
-            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1400&q=80" alt="Industrial automation">
-            <div class="gallery-caption">
-              <h3>Automation & Control</h3>
-              <p>Smart manufacturing solutions</p>
-            </div>
-          </div>
-          <div class="gallery-slide">
-            <img src="https://images.unsplash.com/photo-1565372915408-90ecf8571f57?auto=format&fit=crop&w=1400&q=80" alt="Inverter system">
-            <div class="gallery-caption">
-              <h3>Inverter & Backup Systems</h3>
-              <p>Reliable power continuity</p>
-            </div>
-          </div>
-          <div class="gallery-slide">
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80" alt="VFD control">
-            <div class="gallery-caption">
-              <h3>VFD Motor Control</h3>
-              <p>Precision speed and torque control</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="gallery-controls">
-          <button class="gallery-btn" onclick="prevSlide()" aria-label="Previous slide">‹</button>
-          <button class="gallery-btn" onclick="nextSlide()" aria-label="Next slide">›</button>
-        </div>
-      </div>
-      
-      <div class="gallery-dots" id="galleryDots"></div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Get In Touch</span>
-        <h2 class="section-title">Ready to Power Your Project?</h2>
-        <p class="section-description">
-          All numbers are available on WhatsApp. Reach out for quotes, consultations, or emergency support.
-        </p>
-      </div>
-      
-      <div class="contact-grid">
-        <div class="contact-card fade-in stagger-1">
-          <div class="contact-icon">📞</div>
-          <h3 class="contact-title">Main Line</h3>
-          <div class="contact-info">
-            <a href="tel:+2348029829218">+234 802 982 9218</a>
-          </div>
-          <a href="https://wa.me/2348029829218" target="_blank" rel="noopener" class="contact-cta">
-            WhatsApp →
-          </a>
-        </div>
-        
-        <div class="contact-card fade-in stagger-2">
-          <div class="contact-icon">📱</div>
-          <h3 class="contact-title">Additional Lines</h3>
-          <div class="contact-info">
-            +234 802 982 9219<br>
-            +234 813 239 6775<br>
-            +234 705 220 0670
-          </div>
-        </div>
-        
-        <div class="contact-card fade-in stagger-3">
-          <div class="contact-icon">✉️</div>
-          <h3 class="contact-title">Email</h3>
-          <div class="contact-info">
-            <a href="mailto:kollylove@gmail.com">kollylove@gmail.com</a>
-          </div>
-        </div>
-        
-        <div class="contact-card fade-in stagger-4">
-          <div class="contact-icon">🌍</div>
-          <h3 class="contact-title">Coverage</h3>
-          <div class="contact-info">
-            Nigeria • Ghana • Kenya<br>
-            Nationwide service available
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <span class="logo-mark" style="width: 32px; height: 32px; font-size: 1rem;">⚡</span>
+          <span class="logo-mark" style="width: 32px; height: 32px; font-size: 1rem;" aria-hidden="true">⚡</span>
           <span>SCOA & Unicorn Engineering</span>
         </div>
         <p class="footer-copy">© 2026 SCOA & Unicorn Engineering. All rights reserved.</p>
@@ -1146,148 +1131,238 @@
     </div>
   </footer>
 
+  <!-- Back to top button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
   <script>
-    // Mobile menu
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
+    (function() {
+      "use strict";
 
-    // Scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
+      // Cache DOM elements
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuToggle = document.getElementById('menuToggle');
+      const closeMenu = document.getElementById('closeMenu');
+      const body = document.body;
+      const backToTop = document.getElementById('backToTop');
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // Counter animation
-    const counters = document.querySelectorAll('[data-count]');
-    let counted = false;
-
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !counted) {
-          counted = true;
-          counters.forEach(counter => {
-            const target = parseInt(counter.dataset.count);
-            const duration = 2000;
-            const step = target / (duration / 16);
-            let current = 0;
-
-            const update = () => {
-              current += step;
-              if (current < target) {
-                counter.textContent = Math.floor(current);
-                requestAnimationFrame(update);
-              } else {
-                counter.textContent = target;
-              }
-            };
-            update();
-          });
-        }
-      });
-    }, { threshold: 0.5 });
-
-    if (counters.length) {
-      counterObserver.observe(counters[0].closest('.hero-stats'));
-    }
-
-    // Gallery carousel
-    const track = document.getElementById('galleryTrack');
-    const dotsContainer = document.getElementById('galleryDots');
-    const slides = track.children;
-    let currentSlide = 0;
-    let autoPlay;
-
-    // Create dots
-    Array.from(slides).forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
-      dot.ariaLabel = `Go to slide ${i + 1}`;
-      dot.onclick = () => goToSlide(i);
-      dotsContainer.appendChild(dot);
-    });
-
-    function updateDots() {
-      dotsContainer.querySelectorAll('.gallery-dot').forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentSlide);
-      });
-    }
-
-    function goToSlide(index) {
-      currentSlide = (index + slides.length) % slides.length;
-      track.style.transform = `translateX(-${currentSlide * 100}%)`;
-      updateDots();
-      resetAutoPlay();
-    }
-
-    function nextSlide() {
-      goToSlide(currentSlide + 1);
-    }
-
-    function prevSlide() {
-      goToSlide(currentSlide - 1);
-    }
-
-    function resetAutoPlay() {
-      clearInterval(autoPlay);
-      autoPlay = setInterval(nextSlide, 5000);
-    }
-
-    // Touch/swipe support
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    track.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    track.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      const diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 50) {
-        diff > 0 ? nextSlide() : prevSlide();
+      // Mobile menu functions
+      function openMenu() {
+        mobileMenu.classList.add('open');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        body.classList.add('menu-open');
+        const firstLink = mobileMenu.querySelector('a');
+        if (firstLink) firstLink.focus();
       }
-    }, { passive: true });
 
-    // Keyboard navigation
-    document.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft') prevSlide();
-      if (e.key === 'ArrowRight') nextSlide();
-    });
+      function closeMenuFunc() {
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        body.classList.remove('menu-open');
+        menuToggle.focus();
+      }
 
-    resetAutoPlay();
+      if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+          mobileMenu.classList.contains('open') ? closeMenuFunc() : openMenu();
+        });
+      }
 
-    // Active nav link
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
+      if (closeMenu) {
+        closeMenu.addEventListener('click', closeMenuFunc);
+      }
 
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollY >= sectionTop - 200) {
-          current = section.getAttribute('id');
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+          closeMenuFunc();
         }
       });
 
-      navLinks.forEach(link => {
-        link.removeAttribute('aria-current');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.setAttribute('aria-current', 'true');
+      mobileMenu.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+          const focusable = mobileMenu.querySelectorAll('a, button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            last.focus();
+            e.preventDefault();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            first.focus();
+            e.preventDefault();
+          }
         }
       });
-    });
+
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenuFunc);
+      });
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Scroll animations
+      const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+      // Counter animation
+      const counters = document.querySelectorAll('[data-count]');
+      let counted = false;
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !counted) {
+            counted = true;
+            counters.forEach(counter => {
+              const target = parseInt(counter.dataset.count);
+              const duration = 2000;
+              const step = target / (duration / 16);
+              let current = 0;
+              const update = () => {
+                current += step;
+                if (current < target) {
+                  counter.textContent = Math.floor(current);
+                  requestAnimationFrame(update);
+                } else {
+                  counter.textContent = target;
+                }
+              };
+              update();
+            });
+          }
+        });
+      }, { threshold: 0.5 });
+
+      if (counters.length) {
+        counterObserver.observe(document.querySelector('.hero-stats'));
+      }
+
+      // Gallery carousel
+      const track = document.getElementById('galleryTrack');
+      const prevBtn = document.getElementById('prevSlide');
+      const nextBtn = document.getElementById('nextSlide');
+      const dotsContainer = document.getElementById('galleryDots');
+      if (track && dotsContainer) {
+        const slides = track.children;
+        let currentSlide = 0;
+        let autoPlayInterval;
+        let isHovering = false;
+
+        for (let i = 0; i < slides.length; i++) {
+          const dot = document.createElement('button');
+          dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+          dot.addEventListener('click', () => goToSlide(i));
+          dotsContainer.appendChild(dot);
+        }
+
+        const dots = dotsContainer.children;
+
+        function updateDots() {
+          for (let i = 0; i < dots.length; i++) {
+            dots[i].classList.toggle('active', i === currentSlide);
+          }
+        }
+
+        function goToSlide(index) {
+          currentSlide = (index + slides.length) % slides.length;
+          track.style.transform = `translateX(-${currentSlide * 100}%)`;
+          updateDots();
+          resetAutoPlay();
+        }
+
+        function nextSlide() { goToSlide(currentSlide + 1); }
+        function prevSlide() { goToSlide(currentSlide - 1); }
+
+        function startAutoPlay() {
+          if (autoPlayInterval) clearInterval(autoPlayInterval);
+          if (!isHovering) {
+            autoPlayInterval = setInterval(nextSlide, 5000);
+          }
+        }
+
+        function resetAutoPlay() {
+          clearInterval(autoPlayInterval);
+          startAutoPlay();
+        }
+
+        track.addEventListener('mouseenter', () => {
+          isHovering = true;
+          clearInterval(autoPlayInterval);
+        });
+        track.addEventListener('mouseleave', () => {
+          isHovering = false;
+          startAutoPlay();
+        });
+
+        let touchStartX = 0;
+        track.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        track.addEventListener('touchend', (e) => {
+          const touchEndX = e.changedTouches[0].screenX;
+          const diff = touchStartX - touchEndX;
+          if (Math.abs(diff) > 50) {
+            diff > 0 ? nextSlide() : prevSlide();
+          }
+        }, { passive: true });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') { prevSlide(); e.preventDefault(); }
+          if (e.key === 'ArrowRight') { nextSlide(); e.preventDefault(); }
+        });
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        startAutoPlay();
+      }
+
+      // Active nav link on scroll (debounced)
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+      let scrollTimeout;
+
+      window.addEventListener('scroll', () => {
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          let current = '';
+          const scrollPos = window.scrollY + 200;
+          sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+              current = section.getAttribute('id');
+            }
+          });
+
+          navLinks.forEach(link => {
+            link.removeAttribute('aria-current');
+            if (link.getAttribute('href') === `#${current}`) {
+              link.setAttribute('aria-current', 'true');
+            }
+          });
+        }, 100);
+      });
+
+    })();
   </script>
-
 </body>
-</html>
+    </html>
